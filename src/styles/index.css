@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Light is "cream paper", dark is "neon stickers at night".
+ * Text on bright colors always uses --on-accent (near black) for contrast.
+ */
+:root {
+  --bg: #fff3d6;
+  --surface: #ffffff;
+  --surface-2: #fff8e8;
+  --ink: #141414;
+  --muted: #554f48;
+  --line: #141414;
+  --dot: rgb(20 20 20 / 0.12);
+  --pink: #ff5fa2;
+  --yellow: #ffdf3d;
+  --lime: #a6ef57;
+  --cyan: #52d9e4;
+  --orange: #ff9447;
+  --purple: #b9a0ff;
+  --red: #ff4d4d;
+  --on-accent: #141414;
+  --sock: #ffffff;
+  --paper: #f7e6bd;
+  --paper-ink: #2b1d0e;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15131a;
+    --surface: #221f29;
+    --surface-2: #2b2733;
+    --ink: #f7f1e6;
+    --muted: #c9c0b2;
+    --line: #ece4d6;
+    --dot: rgb(247 241 230 / 0.07);
+    --sock: #fffaf0;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #15131a;
+  --surface: #221f29;
+  --surface-2: #2b2733;
+  --ink: #f7f1e6;
+  --muted: #c9c0b2;
+  --line: #ece4d6;
+  --dot: rgb(247 241 230 / 0.07);
+  --sock: #fffaf0;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-pink: var(--pink);
+  --color-yellow: var(--yellow);
+  --color-lime: var(--lime);
+  --color-cyan: var(--cyan);
+  --color-orange: var(--orange);
+  --color-purple: var(--purple);
+  --color-red: var(--red);
+  --color-on-accent: var(--on-accent);
+  --color-paper: var(--paper);
+  --color-paper-ink: var(--paper-ink);
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-marker: "Permanent Marker", "Comic Sans MS", cursive;
+}
+
+/* Base styles live in a layer so utilities (like focus:outline-none) can override them. */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* Confetti may fly past the edges; never let it cause sideways scrolling. */
+    overflow-x: clip;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    overflow-x: clip;
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--dot) 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+    color: var(--ink);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: var(--yellow);
+    color: var(--on-accent);
+  }
+
+  :focus-visible {
+    outline: 3px dashed var(--ink);
+    outline-offset: 3px;
+  }
+}
+
+/* A sticker: thick outline, hard offset shadow. --s is the shadow offset. */
+@utility sticker {
+  --s: 5px;
+  background-color: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: 1.25rem;
+  box-shadow: var(--s) var(--s) 0 0 var(--line);
+}
+
+@utility sticker-sm {
+  --s: 3px;
+  border: 2.5px solid var(--line);
+  border-radius: 0.85rem;
+  box-shadow: var(--s) var(--s) 0 0 var(--line);
+}
+
+/* Lifts on hover, presses into its shadow on tap. */
+@utility press {
+  cursor: pointer;
+  transition:
+    transform 110ms ease,
+    box-shadow 110ms ease,
+    background-color 150ms ease;
+  &:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    box-shadow: calc(var(--s, 4px) + 1px) calc(var(--s, 4px) + 1px) 0 0 var(--line);
+  }
+  &:active:not(:disabled) {
+    transform: translate(var(--s, 4px), var(--s, 4px));
+    box-shadow: 0 0 0 0 var(--line);
+  }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+/* Washi tape label stuck on top of a card. */
+@utility tape {
+  position: absolute;
+  top: -0.95rem;
+  left: 1rem;
+  padding: 0.2rem 0.8rem;
+  border: 2.5px solid var(--line);
+  border-radius: 0.35rem;
+  background: var(--yellow);
+  color: var(--on-accent);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(-2.5deg);
+}
+
+/* Speech bubble with a tail pointing left. */
+.bubble {
+  position: relative;
+}
+.bubble::before,
+.bubble::after {
+  content: "";
+  position: absolute;
+  top: 1.35rem;
+  border-style: solid;
+}
+.bubble::before {
+  left: -15px;
+  border-width: 10px 15px 10px 0;
+  border-color: transparent var(--line) transparent transparent;
+}
+.bubble::after {
+  left: -10px;
+  top: calc(1.35rem + 3px);
+  border-width: 7px 11px 7px 0;
+  border-color: transparent var(--surface) transparent transparent;
+}
+
+/* Lefty blinks every few seconds. */
+@keyframes blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.1);
+  }
+}
+.blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 4.2s infinite;
+}
+
+/* "It's not there!" */
+@keyframes shake {
+  0%,
+  100% {
+    translate: 0;
+  }
+  15% {
+    translate: -14px;
+  }
+  30% {
+    translate: 14px;
+  }
+  45% {
+    translate: -10px;
+  }
+  60% {
+    translate: 10px;
+  }
+  75% {
+    translate: -5px;
+  }
+  90% {
+    translate: 5px;
+  }
+}
+.shake {
+  animation: shake 0.55s ease-in-out;
+}
+
+dialog::backdrop {
+  background: rgb(10 8 14 / 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reduced motion has to beat every component style, hence !important. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

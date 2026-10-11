@@ -1,0 +1,22 @@
+name: 🐛 Bug report
+description: Something doesn't work (and it's not just you losing your keys again)
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you type or tap, and what did you expect instead?
+      placeholder: I typed "keys in the bowl" and it thought "bowl" was the item…
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and browser
+      placeholder: e.g. Pixel 8, Chrome 141 / iPhone 15, Safari / Windows, Edge
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or anything else
+      description: Please don't share personal details about where your real stuff is. 🙂

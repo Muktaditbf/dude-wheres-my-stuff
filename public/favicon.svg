@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Dude, Where's My Stuff?</title>
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="#ffdf3d" stroke="#141414" stroke-width="24"/>
+  <g transform="translate(256 262) rotate(-9) scale(2.55) translate(-60 -75)">
+    <defs>
+      <clipPath id="b"><path d="M38 30 L90 30 L90 98 C90 124 74 138 52 138 L24 138 C10 138 4 130 4 119 C4 107 13 100 25 100 L31 100 C35 100 38 97 38 93 Z"/></clipPath>
+      <clipPath id="c"><rect x="34" y="6" width="60" height="28" rx="9"/></clipPath>
+    </defs>
+    <path d="M38 30 L90 30 L90 98 C90 124 74 138 52 138 L24 138 C10 138 4 130 4 119 C4 107 13 100 25 100 L31 100 C35 100 38 97 38 93 Z" fill="#fff"/>
+    <g clip-path="url(#b)" fill="#ff5fa2"><circle cx="88" cy="134" r="23"/><circle cx="8" cy="121" r="20"/></g>
+    <path d="M38 30 L90 30 L90 98 C90 124 74 138 52 138 L24 138 C10 138 4 130 4 119 C4 107 13 100 25 100 L31 100 C35 100 38 97 38 93 Z" fill="none" stroke="#141414" stroke-width="4.5" stroke-linejoin="round"/>
+    <rect x="34" y="6" width="60" height="28" rx="9" fill="#ffdf3d"/>
+    <g clip-path="url(#c)" fill="#52d9e4"><rect x="34" y="12" width="60" height="5"/><rect x="34" y="22" width="60" height="5"/></g>
+    <rect x="34" y="6" width="60" height="28" rx="9" fill="none" stroke="#141414" stroke-width="4.5"/>
+    <ellipse cx="45" cy="74" rx="5" ry="3" fill="#ff5fa2" opacity=".55"/>
+    <ellipse cx="83" cy="74" rx="5" ry="3" fill="#ff5fa2" opacity=".55"/>
+    <circle cx="52" cy="56" r="10" fill="#fff" stroke="#141414" stroke-width="3.2"/>
+    <circle cx="76" cy="56" r="10" fill="#fff" stroke="#141414" stroke-width="3.2"/>
+    <circle cx="55" cy="59" r="4.8" fill="#141414"/>
+    <circle cx="79" cy="53" r="4.8" fill="#141414"/>
+    <path d="M56 78 Q64 87 72 78" fill="none" stroke="#141414" stroke-width="3.8" stroke-linecap="round"/>
+  </g>
+</svg>

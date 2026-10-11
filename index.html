@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Dude, Where's My Stuff?</title>
+    <meta
+      name="description"
+      content="Tell it where you put your stuff. Ask it later. Get roasted. A funny, private, offline-first app that remembers where you put things."
+    />
+    <meta name="theme-color" content="#ffdf3d" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#15131a" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dude, Where's My Stuff?" />
+    <meta
+      property="og:description"
+      content="The app for people who put things somewhere. Tell it where. Ask it later. Get roasted."
+    />
+    <meta property="og:image" content="https://muktaditbf.github.io/dude-wheres-my-stuff/og.png" />
+    <meta property="og:url" content="https://muktaditbf.github.io/dude-wheres-my-stuff/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      // Apply the saved theme before the first paint so there is no flash.
+      try {
+        const theme = JSON.parse(localStorage.getItem('dwms:settings') || '{}').theme;
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- First frame, shown until the app takes over. Mirrors the real header and title to avoid layout shift. -->
+      <header class="sticky top-0 z-40 border-b-[3px] border-line bg-bg/90">
+        <div class="mx-auto flex h-16 max-w-3xl items-center gap-3 px-4">
+          <span class="sticker-sm grid size-10 place-items-center bg-yellow"></span>
+          <span class="text-lg leading-none font-extrabold tracking-tight uppercase">Where's my<br /><span class="text-pink">stuff?!</span></span>
+        </div>
+      </header>
+      <main class="mx-auto max-w-3xl px-4 pt-6">
+        <h1 class="text-[2.65rem] leading-[0.92] font-extrabold tracking-tight uppercase sm:text-6xl">
+          <span class="sticker-sm inline-block -rotate-3 bg-yellow px-2 text-on-accent">Dude,</span>
+          <span class="mt-2 block">where's my</span>
+          <span class="sticker-sm mt-1 inline-block rotate-2 bg-pink px-2 text-on-accent">stuff?!</span>
+        </h1>
+      </main>
+    </div>
+    <noscript>Dude, where's your JavaScript? This app needs it to remember your stuff.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

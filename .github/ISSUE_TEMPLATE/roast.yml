@@ -1,0 +1,39 @@
+name: 🔥 Submit a roast
+description: Got a line Lefty should say? Pitch it.
+labels: [roast]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Roasts are about **forgetting things**, never about the person. Keep it short and funny.
+        See the situations in [`src/lib/roasts.ts`](../blob/main/src/lib/roasts.ts).
+  - type: dropdown
+    id: situation
+    attributes:
+      label: When should Lefty say it?
+      options:
+        - You asked about the same thing many times (findLegend)
+        - "It's not there" (notThere)
+        - You found it (found)
+        - You stashed something (stashNew / stashMoved)
+        - Never heard of that item (findUnknown)
+        - Something else (explain below)
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Roast level
+      options:
+        - Bro
+        - Unhinged
+        - Chill (polite, no roasting)
+    validations:
+      required: true
+  - type: textarea
+    id: line
+    attributes:
+      label: The line
+      placeholder: "{place}. At this point {item} is avoiding you."
+    validations:
+      required: true

@@ -1,0 +1,78 @@
+{
+  "name": "dude-wheres-my-stuff",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The app for people who put things somewhere. Tell it where you put your stuff, ask it later, get roasted.",
+  "license": "MIT",
+  "author": "Muktaditbf",
+  "homepage": "https://muktaditbf.github.io/dude-wheres-my-stuff/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muktaditbf/dude-wheres-my-stuff.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Muktaditbf/dude-wheres-my-stuff/issues"
+  },
+  "keywords": [
+    "pwa",
+    "offline-first",
+    "local-first",
+    "react",
+    "typescript",
+    "productivity",
+    "lost-and-found",
+    "funny"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "check": "biome check . && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "screenshots": "node scripts/screenshots.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource/permanent-marker": "^5.3.0",
+    "dexie": "^4.4.6",
+    "dexie-react-hooks": "^4.4.0",
+    "fuse.js": "^7.5.0",
+    "lucide-react": "^1.55.0",
+    "motion": "^14.1.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@biomejs/biome": "^2.5.15",
+    "@playwright/test": "^1.64.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vite-pwa/assets-generator": "^2.0.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "fake-indexeddb": "^6.2.5",
+    "jsdom": "^30.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.0.3",
+    "workbox-window": "^7.4.1"
+  }
+}
