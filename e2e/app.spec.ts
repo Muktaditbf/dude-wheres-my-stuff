@@ -150,3 +150,38 @@ test('drama mode: searching theatre and the plot twist', async ({ page }) => {
   await expect(twist).toBeVisible();
   await expect(twist).toBeHidden();
 });
+
+test('auto-backup keeps one file up to date with every change', async ({ page }) => {
+  // Stand-in for the browser's "save file" picker, recording what gets written.
+  await page.addInitScript(() => {
+    const w = window as unknown as { written: string[]; showSaveFilePicker: unknown };
+    w.written = [];
+    w.showSaveFilePicker = async () => ({
+      name: 'stuff-backup.json',
+      queryPermission: async () => 'granted',
+      requestPermission: async () => 'granted',
+      createWritable: async () => ({
+        write: async (data: string) => {
+          w.written.push(data);
+        },
+        close: async () => {},
+      }),
+    });
+  });
+  await page.goto('./#/settings');
+  await page.reload();
+  await page.getByRole('button', { name: 'Turn on auto-backup' }).click();
+  await expect(page.getByText('stuff-backup.json')).toBeVisible();
+
+  await page.getByRole('link', { name: 'Home', exact: true }).first().click();
+  await say(page, 'passport in the safe');
+  await expect
+    .poll(() =>
+      page.evaluate(() => (window as unknown as { written: string[] }).written.at(-1) ?? ''),
+    )
+    .toContain('in the safe');
+  const writes = await page.evaluate(
+    () => (window as unknown as { written: string[] }).written.length,
+  );
+  expect(writes).toBeGreaterThanOrEqual(2);
+});

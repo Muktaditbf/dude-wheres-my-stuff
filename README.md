@@ -101,7 +101,10 @@ The app only works if telling it is quicker than forgetting. Some shortcuts:
 
 - Your stuff lives **only in your browser** (IndexedDB) on your device.
 - **No account, no server, no analytics, no cookies, no third-party requests.** Even the fonts are bundled.
-- That also means clearing your browser data clears your stuff. Use **Settings → Download backup** (a JSON file you can restore anywhere), and **Protect my data** to ask the browser not to clear it on its own.
+- That also means clearing your browser data clears your stuff. Three ways to stay safe:
+  - **Auto-backup** (Chrome and Edge on a computer): pick a file once, and every change is saved to that one file on your computer. If your browser data is wiped, open the app, choose **Restore backup** and pick the file.
+  - **Download backup**: a JSON file you can restore anywhere, for example on a new phone.
+  - **Protect my data**: asks the browser not to clear the data on its own.
 
 ## Built with
 

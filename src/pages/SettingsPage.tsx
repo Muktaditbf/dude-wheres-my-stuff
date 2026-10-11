@@ -1,6 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { Download, ShieldCheck, Smartphone, Upload } from 'lucide-react';
 import { type ReactNode, useEffect, useState } from 'react';
+import { AutoBackupPanel } from '../components/AutoBackup';
 import { Lefty } from '../components/Lefty';
 import { useToast } from '../components/Toasts';
 import { Button, cn, PageHeader, Segmented, Toggle } from '../components/ui';
@@ -211,6 +212,7 @@ export function SettingsPage() {
             tracking. That also means: if you clear your browser data, it&apos;s gone. Make backups.
           </p>
           <StorageStatus />
+          <AutoBackupPanel />
           <div className="flex flex-wrap gap-2">
             <Button
               tone="cyan"

@@ -6,9 +6,11 @@ import './styles/index.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
+import { initAutoBackup } from './lib/autobackup';
 import { applyTheme, getSettings } from './lib/settings';
 
 applyTheme(getSettings().theme);
+void initAutoBackup();
 
 const root = document.getElementById('root');
 if (root) {

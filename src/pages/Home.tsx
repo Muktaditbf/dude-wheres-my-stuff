@@ -2,6 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { Download } from 'lucide-react';
 import { m } from 'motion/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AutoBackupReminder } from '../components/AutoBackup';
 import { ItemRow } from '../components/ItemRow';
 import { Lefty, type Mood } from '../components/Lefty';
 import { Omnibox } from '../components/Omnibox';
@@ -17,6 +18,7 @@ import { useToast } from '../components/Toasts';
 import { Button, Chip } from '../components/ui';
 import { getMeta, markFound, recordSearch, setMeta, stash, undo } from '../db/actions';
 import { db, type Item } from '../db/schema';
+import { useAutoBackup } from '../lib/autobackup';
 import { loadDemo } from '../lib/demo';
 import { hrefFor, useFocusShortcut, useItems, usePrefersReducedMotion } from '../lib/hooks';
 import { isStandalone } from '../lib/install';
@@ -146,11 +148,13 @@ function Welcome({ onPrefill, onDemo }: { onPrefill: (text: string) => void; onD
 
 function BackupNag({ count }: { count: number }) {
   const toast = useToast();
+  const autoBackup = useAutoBackup();
   const meta = useLiveQuery(async () => ({
     last: await getMeta<number>('lastBackupAt'),
     snooze: await getMeta<number>('backupSnoozeUntil'),
   }));
-  if (!meta || count < 5) return null;
+  if (!meta || count < 5 || autoBackup.status === 'on' || autoBackup.status === 'paused')
+    return null;
   const now = Date.now();
   if ((meta.snooze ?? 0) > now || (meta.last && now - meta.last < 30 * DAY)) return null;
 
@@ -575,6 +579,7 @@ export function Home() {
         </section>
       )}
 
+      <AutoBackupReminder />
       <BackupNag count={count} />
     </>
   );
